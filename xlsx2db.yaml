@@ -1,0 +1,66 @@
+Default Configuration:
+  File Location: c:\data
+  Sheet Name: Sheet1
+  DB Connection: DataGov
+  Schema Name: REPORT
+  Write Mode: Historical
+  Header Row: 1
+  Data Row: 2
+  Data Column: A
+  Create Table If Not Exists: True
+
+
+Project 1 Config:
+  File Location: c:\data\dwh
+  Sheet Name: Sheet1
+  DB Connection: DWH
+  Schema Name: FLEXBO
+  Write Mode: Historical
+  Header Row: 1
+  Data Row: 2
+  Data Column: A
+  Create Table If Not Exists: True
+
+
+DB Connections:
+  DataGov:
+    Type: Oracle
+    IP: 10.100.0.1
+    Port: 1521
+    Service Name: DataGov
+    User: REPORT
+    Password: ddskfew2324,dd
+  DWH:
+    Type: Oracle
+    IP: 10.100.0.1
+    Port: 1521
+    Service Name: DataGov
+    User: REPORT
+    Password: ddskfew2324,dd
+
+Jobs Configuration:
+  EXCEL_FILE1:
+    File Name: file1.xlsx
+    File Location: c:\data
+    Sheet Name: Sheet1
+    Target Table: TBL_TABLE1
+    DB Connection: DataGov
+    Write Mode: Replace
+    Field Map:
+      excel_col1: db_col1
+      excel_col2: db_col2
+      excel_col3: db_col3
+      excel_col4: db_col4
+    Validation Rules:
+      excel_col1: NOT_NULL
+      excel_col2: IS_NUMBER
+      excel_col3: [A, B, C, D]
+
+  EXCEL_FILE2:
+    File Name: file2.xlsx
+    Target Table: TBL_TABLE2
+    Config: Project 1 Config
+  
+  EXCEL_FILE3:
+    File Name: file3.xlsx
+    Target Table: TBL_TABLE3
